@@ -1,0 +1,85 @@
+## ipa version: VERSION: 4.13.4, API_VERSION: 2.257
+## pwpolicy
+  Group: global_policy
+  Max lifetime (days): 90
+  Min lifetime (hours): 1
+  History size: 0
+  Character classes: 0
+  Min length: 8
+  Max failures: 6
+  Failure reset interval: 60
+  Lockout duration: 600
+  Grace login limit: -1
+## krbtpolicy
+  Max life: 86400
+  Max renew: 604800
+## config (login shell, userobjectclasses кратко)
+  Maximum username length: 32
+  Maximum hostname length: 64
+  Home directory base: /home
+  Default shell: /bin/sh
+  Default users group: ipausers
+  Default e-mail domain: otlichnik.lab
+  Search time limit: 2
+  Search size limit: 100
+  User search fields: uid,givenname,sn,telephonenumber,ou,title
+  Group search fields: cn,description
+  Enable migration mode: False
+  Default SELinux user: unconfined_u:s0-s0:c0.c1023
+  Default PAC types: MS-PAC, nfs:NONE
+## hbacrule
+  Rule name: allow_all
+  User category: all
+  Host category: all
+  Service category: all
+  Description: Allow all users to access any host from any host
+  Enabled: True
+  Rule name: allow_systemd-user
+  User category: all
+  Host category: all
+  Enabled: True
+  HBAC Services: systemd-user
+Number of entries returned 2
+## sudorule
+--------------------
+0 Sudo Rules matched
+--------------------
+----------------------------
+Number of entries returned 0
+----------------------------
+## users
+  User login: admin
+  Login shell: /bin/bash
+  Account disabled: False
+  User login: radius
+  Login shell: /bin/sh
+  Account disabled: False
+  User login: testuser
+  Login shell: /bin/sh
+  Account disabled: False
+Number of entries returned 3
+## groups
+  Group name: admins
+  Group name: editors
+  Group name: ipausers
+  Group name: trust admins
+Number of entries returned 4
+## hosts
+  Host name: arm.otlichnik.lab
+  Host name: ipa.otlichnik.lab
+Number of entries returned 2
+## dns zones
+  Zone name: 20.10.10.in-addr.arpa.
+  Dynamic update: False
+  Allow query: any;
+  Allow transfer: none;
+  Zone name: otlichnik.lab.
+  Dynamic update: True
+  Allow query: any;
+  Allow transfer: none;
+## trust/otp
+  TOTP authentication Window: 300
+  TOTP Synchronization Window: 86400
+  HOTP Authentication Window: 10
+  HOTP Synchronization Window: 100
+  Require user verification: True

@@ -1,0 +1,29 @@
+ldap {
+	server = '@@LDAP_SERVER@@'
+	identity = '@@LDAP_BIND_DN@@'
+	password = '@@LDAP_PASSWORD@@'
+	base_dn = '@@LDAP_BASE_DN@@'
+
+	user {
+		base_dn = "${..base_dn}"
+		filter = "(uid=%{%{Stripped-User-Name}:-%{User-Name}})"
+	}
+
+	group {
+		base_dn = "${..base_dn}"
+		filter = "(objectClass=posixGroup)"
+		membership_attribute = 'member'
+	}
+
+	pool {
+		start = 5
+		min = 4
+		max = 10
+		spare = 3
+		idle = 60
+	}
+
+	options {
+		chase_referrals = yes
+	}
+}

@@ -1,0 +1,7 @@
+#!/bin/sh
+# Заглушка /usr/bin/hostnamectl для контейнера без systemd (нужна ipa-client-install).
+if [ "$1" = "set-hostname" ] && [ -n "$2" ]; then
+    hostname "$2" 2>/dev/null || true
+    printf '%s\n' "$2" > /etc/hostname 2>/dev/null || true
+fi
+exit 0

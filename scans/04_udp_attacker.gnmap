@@ -1,0 +1,32 @@
+# Nmap 7.93 scan initiated Sat Nov 14 10:47:22 2026 as: nmap -Pn -n -sU -sV --top-ports 30 --open -iL /out/targets.txt -oA /out/04_udp_attacker
+Host: 198.51.100.1 ()	Status: Up
+Host: 198.51.100.1 ()	Ports: 53/open|filtered/udp//domain///, 67/open|filtered/udp//dhcps///, 68/open|filtered/udp//dhcpc///, 111/open|filtered/udp//rpcbind///, 123/open|filtered/udp//ntp///, 445/open|filtered/udp//microsoft-ds///, 500/open|filtered/udp//isakmp///, 514/open|filtered/udp//syslog///, 996/open|filtered/udp//vsinet///, 997/open|filtered/udp//maitrd///, 998/open|filtered/udp//puparp///, 999/open|filtered/udp//applix///, 1434/open|filtered/udp//ms-sql-m///, 1701/open|filtered/udp//L2TP///, 1900/open|filtered/udp//upnp///, 3283/open|filtered/udp//netassistant///, 5353/open|filtered/udp//zeroconf///, 49153/open|filtered/udp//unknown///	Ignored State: closed (12)
+Host: 198.51.100.10 ()	Status: Up
+Host: 198.51.100.10 ()	Ports: 53/open|filtered/udp//domain///, 67/open|filtered/udp//dhcps///, 68/open|filtered/udp//dhcpc///, 69/open|filtered/udp//tftp///, 123/open|filtered/udp//ntp///, 162/open|filtered/udp//snmptrap///, 500/open|filtered/udp//isakmp///, 514/open|filtered/udp//syslog///, 520/open|filtered/udp//route///, 996/open|filtered/udp//vsinet///, 997/open|filtered/udp//maitrd///, 999/open|filtered/udp//applix///, 1434/open|filtered/udp//ms-sql-m///, 1701/open|filtered/udp//L2TP///, 1900/open|filtered/udp//upnp///, 5353/open|filtered/udp//zeroconf///, 49154/open|filtered/udp//unknown///	Ignored State: closed (13)
+Host: 198.51.100.53 ()	Status: Up
+Host: 198.51.100.53 ()	Ports: 53/open/udp//domain//dnsmasq 2.90/, 67/open|filtered/udp//dhcps///, 68/open|filtered/udp//dhcpc///, 111/open|filtered/udp//rpcbind///, 500/open|filtered/udp//isakmp///, 514/open|filtered/udp//syslog///, 520/open|filtered/udp//route///, 997/open|filtered/udp//maitrd///, 998/open|filtered/udp//puparp///, 999/open|filtered/udp//applix///, 1434/open|filtered/udp//ms-sql-m///, 1701/open|filtered/udp//L2TP///, 1900/open|filtered/udp//upnp///, 3283/open|filtered/udp//netassistant///, 5353/open|filtered/udp//zeroconf///, 49153/open|filtered/udp//unknown///, 49154/open|filtered/udp//unknown///	Ignored State: closed (13)
+Host: 10.10.10.2 ()	Status: Up
+Host: 10.10.10.2 ()	Ports: 	Ignored State: open|filtered (30)
+Host: 10.10.10.10 ()	Status: Up
+Host: 10.10.10.10 ()	Ports: 	Ignored State: open|filtered (30)
+Host: 10.10.10.11 ()	Status: Up
+Host: 10.10.10.11 ()	Ports: 	Ignored State: open|filtered (30)
+Host: 10.10.10.12 ()	Status: Up
+Host: 10.10.10.12 ()	Ports: 	Ignored State: open|filtered (30)
+Host: 10.10.10.13 ()	Status: Up
+Host: 10.10.10.13 ()	Ports: 	Ignored State: open|filtered (30)
+Host: 10.10.10.14 ()	Status: Up
+Host: 10.10.10.14 ()	Ports: 	Ignored State: open|filtered (30)
+Host: 10.10.10.15 ()	Status: Up
+Host: 10.10.10.15 ()	Ports: 	Ignored State: open|filtered (30)
+Host: 10.10.20.1 ()	Status: Up
+Host: 10.10.20.1 ()	Ports: 	Ignored State: open|filtered (30)
+Host: 10.10.20.2 ()	Status: Up
+Host: 10.10.20.2 ()	Ports: 	Ignored State: open|filtered (30)
+Host: 10.10.20.10 ()	Status: Up
+Host: 10.10.20.10 ()	Ports: 	Ignored State: open|filtered (30)
+Host: 10.10.20.11 ()	Status: Up
+Host: 10.10.20.11 ()	Ports: 	Ignored State: open|filtered (30)
+Host: 10.10.20.12 ()	Status: Up
+Host: 10.10.20.12 ()	Ports: 	Ignored State: open|filtered (30)
+# Nmap done at Sat Nov 14 11:23:41 2026 -- 17 IP addresses (17 hosts up) scanned in 2179.22 seconds

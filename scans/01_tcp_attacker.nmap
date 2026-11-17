@@ -1,0 +1,69 @@
+# Nmap 7.93 scan initiated Sat Nov 14 10:36:38 2026 as: nmap -Pn -n -sS -sV -p- --min-rate 2000 --open -iL /out/targets.txt -oA /out/01_tcp_attacker
+Nmap scan report for 198.51.100.10
+Host is up (0.0000070s latency).
+Not shown: 65533 closed tcp ports (reset)
+PORT     STATE SERVICE VERSION
+5900/tcp open  vnc     VNC (protocol 3.8)
+6080/tcp open  gue?
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port6080-TCP:V=7.93%I=7%D=11/14%Time=6AF839BD%P=x86_64-pc-linux-gnu%r(G
+SF:etRequest,29B,"HTTP/1\.1\x20200\x20OK\r\nServer:\x20WebSockify\x20Pytho
+SF:n/3\.11\.2\r\nDate:\x20Sat,\x2014\x20Nov\x202026\x2010:36:45\x20GMT\r\n
+SF:Content-type:\x20text/html;\x20charset=utf-8\r\nContent-Length:\x20516\
+SF:r\n\r\n<!DOCTYPE\x20HTML>\n<html\x20lang=\"en\">\n<head>\n<meta\x20char
+SF:set=\"utf-8\">\n<title>Directory\x20listing\x20for\x20/</title>\n</head
+SF:>\n<body>\n<h1>Directory\x20listing\x20for\x20/</h1>\n<hr>\n<ul>\n<li><
+SF:a\x20href=\"app/\">app/</a></li>\n<li><a\x20href=\"core/\">core/</a></l
+SF:i>\n<li><a\x20href=\"include/\">include/</a></li>\n<li><a\x20href=\"uti
+SF:ls/\">utils/</a></li>\n<li><a\x20href=\"vendor/\">vendor/</a></li>\n<li
+SF:><a\x20href=\"vnc\.html\">vnc\.html</a></li>\n<li><a\x20href=\"vnc_auto
+SF:\.html\">vnc_auto\.html@</a></li>\n<li><a\x20href=\"vnc_lite\.html\">vn
+SF:c_lite\.html</a></li>\n</ul>\n<hr>\n</body>\n</html>\n")%r(HTTPOptions,
+SF:22D,"HTTP/1\.1\x20501\x20Unsupported\x20method\x20\('OPTIONS'\)\r\nServ
+SF:er:\x20WebSockify\x20Python/3\.11\.2\r\nDate:\x20Sat,\x2014\x20Nov\x202
+SF:026\x2010:36:45\x20GMT\r\nConnection:\x20close\r\nContent-Type:\x20text
+SF:/html;charset=utf-8\r\nContent-Length:\x20360\r\n\r\n<!DOCTYPE\x20HTML>
+SF:\n<html\x20lang=\"en\">\n\x20\x20\x20\x20<head>\n\x20\x20\x20\x20\x20\x
+SF:20\x20\x20<meta\x20charset=\"utf-8\">\n\x20\x20\x20\x20\x20\x20\x20\x20
+SF:<title>Error\x20response</title>\n\x20\x20\x20\x20</head>\n\x20\x20\x20
+SF:\x20<body>\n\x20\x20\x20\x20\x20\x20\x20\x20<h1>Error\x20response</h1>\
+SF:n\x20\x20\x20\x20\x20\x20\x20\x20<p>Error\x20code:\x20501</p>\n\x20\x20
+SF:\x20\x20\x20\x20\x20\x20<p>Message:\x20Unsupported\x20method\x20\('OPTI
+SF:ONS'\)\.</p>\n\x20\x20\x20\x20\x20\x20\x20\x20<p>Error\x20code\x20expla
+SF:nation:\x20501\x20-\x20Server\x20does\x20not\x20support\x20this\x20oper
+SF:ation\.</p>\n\x20\x20\x20\x20</body>\n</html>\n")%r(RTSPRequest,16C,"<!
+SF:DOCTYPE\x20HTML>\n<html\x20lang=\"en\">\n\x20\x20\x20\x20<head>\n\x20\x
+SF:20\x20\x20\x20\x20\x20\x20<meta\x20charset=\"utf-8\">\n\x20\x20\x20\x20
+SF:\x20\x20\x20\x20<title>Error\x20response</title>\n\x20\x20\x20\x20</hea
+SF:d>\n\x20\x20\x20\x20<body>\n\x20\x20\x20\x20\x20\x20\x20\x20<h1>Error\x
+SF:20response</h1>\n\x20\x20\x20\x20\x20\x20\x20\x20<p>Error\x20code:\x204
+SF:00</p>\n\x20\x20\x20\x20\x20\x20\x20\x20<p>Message:\x20Bad\x20request\x
+SF:20version\x20\('RTSP/1\.0'\)\.</p>\n\x20\x20\x20\x20\x20\x20\x20\x20<p>
+SF:Error\x20code\x20explanation:\x20400\x20-\x20Bad\x20request\x20syntax\x
+SF:20or\x20unsupported\x20method\.</p>\n\x20\x20\x20\x20</body>\n</html>\n
+SF:");
+MAC Address: AA:C1:AB:2C:70:D7 (Unknown)
+
+Nmap scan report for 198.51.100.53
+Host is up (0.0000050s latency).
+Not shown: 65534 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+53/tcp open  domain  dnsmasq 2.90
+MAC Address: AA:C1:AB:27:EF:36 (Unknown)
+
+Nmap scan report for 198.51.100.80
+Host is up (0.0000050s latency).
+Not shown: 65534 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+80/tcp open  http    nginx 1.31.8
+MAC Address: AA:C1:AB:B8:12:FE (Unknown)
+
+Nmap scan report for 10.10.10.11
+Host is up (0.00019s latency).
+Not shown: 65533 filtered tcp ports (no-response), 1 closed tcp port (reset)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT   STATE SERVICE VERSION
+80/tcp open  http    nginx 1.31.8
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Nov 14 10:47:07 2026 -- 17 IP addresses (17 hosts up) scanned in 628.68 seconds

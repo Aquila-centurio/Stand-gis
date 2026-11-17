@@ -1,0 +1,46 @@
+# Nmap 7.93 scan initiated Sat Nov 14 10:47:22 2026 as: nmap -Pn -n -sS -sV -p- --min-rate 3000 --open -iL /out/targets_internal.txt -oA /out/02_tcp_from_dmz
+Nmap scan report for 10.10.10.11
+Host is up (0.0000060s latency).
+Not shown: 65534 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+80/tcp open  http    nginx 1.31.8
+MAC Address: AA:C1:AB:C2:95:AF (Unknown)
+
+Nmap scan report for 10.10.10.12
+Host is up (0.0000050s latency).
+Not shown: 65534 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     vsftpd 3.0.3
+MAC Address: AA:C1:AB:5D:6C:42 (Unknown)
+Service Info: OS: Unix
+
+Nmap scan report for 10.10.10.13
+Host is up (0.0000050s latency).
+Not shown: 65533 closed tcp ports (reset)
+PORT    STATE SERVICE VERSION
+25/tcp  open  smtp    Postfix smtpd
+143/tcp open  imap    Dovecot imapd
+MAC Address: AA:C1:AB:83:81:7C (Unknown)
+Service Info: Host:  mail.otlichnik.lab
+
+Nmap scan report for 10.10.10.10
+Host is up (0.0000030s latency).
+Not shown: 65534 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+53/tcp open  domain  Unbound 1.17.1
+
+Nmap scan report for 10.10.20.10
+Host is up (0.00022s latency).
+Not shown: 65532 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT    STATE SERVICE  VERSION
+53/tcp  open  domain   (unknown banner: 9.16.23-RH)
+389/tcp open  ldap     (Anonymous bind OK)
+636/tcp open  ssl/ldap (Anonymous bind OK)
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port53-TCP:V=7.93%I=7%D=11/14%Time=6AF83D11%P=x86_64-pc-linux-gnu%r(DNS
+SF:VersionBindReqTCP,37,"\x005\0\x06\x85\0\0\x01\0\x01\0\0\0\0\x07version\
+SF:x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03\0\0\0\0\0\x0b\n9\.16\.23-RH");
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Nov 14 10:51:03 2026 -- 13 IP addresses (13 hosts up) scanned in 221.33 seconds

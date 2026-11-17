@@ -1,0 +1,10 @@
+# Nmap 7.93 scan initiated Sat Nov 14 10:36:38 2026 as: nmap -Pn -n -sS -sV -p- --min-rate 2000 --open -iL /out/targets.txt -oA /out/01_tcp_attacker
+Host: 198.51.100.10 ()	Status: Up
+Host: 198.51.100.10 ()	Ports: 5900/open/tcp//vnc//VNC (protocol 3.8)/, 6080/open/tcp//gue?///	Ignored State: closed (65533)
+Host: 198.51.100.53 ()	Status: Up
+Host: 198.51.100.53 ()	Ports: 53/open/tcp//domain//dnsmasq 2.90/	Ignored State: closed (65534)
+Host: 198.51.100.80 ()	Status: Up
+Host: 198.51.100.80 ()	Ports: 80/open/tcp//http//nginx 1.31.8/	Ignored State: closed (65534)
+Host: 10.10.10.11 ()	Status: Up
+Host: 10.10.10.11 ()	Ports: 80/open/tcp//http//nginx 1.31.8/
+# Nmap done at Sat Nov 14 10:47:07 2026 -- 17 IP addresses (17 hosts up) scanned in 628.68 seconds

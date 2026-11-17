@@ -1,0 +1,8 @@
+# Каталог состояния/артефактов лаборатории containerlab
+clab-*/
+
+# Артефакты расширения containerlab для VS Code
+*.annotations.json
+
+# Клиентский бандл VPN (CA, конфиг, креды)
+vpn-client/

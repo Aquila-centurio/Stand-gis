@@ -1,0 +1,19 @@
+| из | куда | результат |
+|---|---|---|
+| attacker | 10.10.10.11:80 | OPEN |
+| attacker | 10.10.10.12:21 | closed/filtered |
+| attacker | 10.10.20.11:5432 | closed/filtered |
+| attacker | 10.10.20.10:389 | closed/filtered |
+| dns | 10.10.20.11:5432 | closed/filtered |
+| dns | 10.10.20.10:389 | OPEN |
+| dns | 10.10.20.10:88 | closed/filtered |
+| dns | 10.10.20.10:443 | closed/filtered |
+| dns | 10.10.20.12:5900 | closed/filtered |
+| vpn | 10.10.20.11:5432 | OPEN |
+| vpn | 10.10.20.10:8443 | OPEN |
+| vpn | 10.10.20.12:6080 | closed/filtered |
+| arm | 10.10.20.11:5432 | OPEN |
+| arm | 10.10.10.12:21 | closed/filtered |
+| arm | 10.10.10.13:143 | closed/filtered |
+| arm | 198.51.100.80:80 | OPEN |
+| arm | 198.51.100.10:6080 | closed/filtered |

@@ -1,0 +1,15 @@
+#!/bin/sh
+. /etc/os-release; echo "OS: $PRETTY_NAME; kernel $(uname -r); user $(id -un)"
+echo "[uid0] $(awk -F: '$3==0{print $1}' /etc/passwd | tr '\n' ' ')"
+echo "[login-shell users] $(awk -F: '$7!~/(nologin|false|sync|halt|shutdown)$/{print $1":"$3}' /etc/passwd | tr '\n' ' ')"
+echo "[passwd -S, без хешей]"; passwd -Sa 2>/dev/null | awk '$2!="L" && $2!="LK"{print "  "$1,$2,$3}' | head -8
+echo "[sudoers] $(grep -RhEv '^\s*(#|$|Defaults)' /etc/sudoers /etc/sudoers.d 2>/dev/null | tr '\n' ';')"
+echo "[login.defs] $(grep -E '^(PASS_MAX_DAYS|PASS_MIN_DAYS|PASS_MIN_LEN|PASS_WARN_AGE|ENCRYPT_METHOD|UMASK)' /etc/login.defs 2>/dev/null | tr -s ' ' | tr '\n' ';')"
+echo "[pam pwquality/faillock] $(grep -RhE 'pwquality|faillock|tally|cracklib' /etc/pam.d 2>/dev/null | grep -v '^#' | sort -u | tr '\n' ';')"
+echo "[sshd] $(ls /etc/ssh/sshd_config 2>/dev/null && grep -hEv '^\s*(#|$)' /etc/ssh/sshd_config | grep -Ei 'PermitRoot|PasswordAuth|Port|PermitEmpty' | tr '\n' ';' || echo нет sshd)"
+echo "[listen] $( (ss -tulnH 2>/dev/null || netstat -tuln 2>/dev/null) | awk '{print $1":"$5}' | sort -u | tr '\n' ' ')"
+echo "[suid usr] $(find /usr/bin /usr/sbin /bin /sbin -xdev -perm -4000 -type f 2>/dev/null | xargs -r -n1 basename | tr '\n' ' ')"
+echo "[world-writable в /etc] $(find /etc -xdev -maxdepth 2 -perm -0002 -type f 2>/dev/null | head -5 | tr '\n' ' ')"
+echo "[shadow права] $(stat -c '%a %U:%G' /etc/shadow 2>/dev/null)"
+echo "[AV/СЗИ] $(ls /usr/bin/clamscan /usr/bin/freshclam /opt/kaspersky /opt/drweb 2>/dev/null | tr '\n' ' ')|auditd:$(command -v auditd) aide:$(command -v aide) fail2ban:$(command -v fail2ban-client)"
+echo "[updates] pkgmgr: $(command -v apt dnf yum 2>/dev/null | tr '\n' ' ')"

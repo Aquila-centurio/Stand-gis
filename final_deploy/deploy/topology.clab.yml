@@ -1,0 +1,375 @@
+# =============================================================================
+#  Лабораторный стенд ГИС (ПАСОИБ) — containerlab
+#
+#  Домен:   otlichnik.lab  (мастер-зона на FreeIPA, во внутренней сети)
+#  DNS:     узел dns в ДМЗ — резолвер для всех узлов:
+#             * зона otlichnik.lab форвардится на FreeIPA (внутренняя сеть)
+#             * остальные имена — на ext-dns во внешнем сегменте (через fw1)
+#
+#  Управляющая (mgmt) сеть оставлена ТОЛЬКО у графических узлов arm и ext-host
+#  (канал удалённого доступа noVNC). Остальные узлы живут только в своём
+#  сегменте (network-mode: none) и доступны через `docker exec`.
+#
+#  Развёртывание:
+#     sh scripts/deploy.sh            # деплой + первичная настройка
+#     sh scripts/deploy.sh --rebuild  # с пересборкой образов
+#  Остановка:
+#     sh scripts/down.sh
+# =============================================================================
+name: gis
+
+mgmt:
+  network: gis-mgmt
+  ipv4-subnet: 172.20.20.0/24
+
+topology:
+  nodes:
+
+    # -------------------------------------------------------------------------
+    # Коммутаторы сегментов. Бридж создаётся ВНУТРИ неймспейса узла-держателя
+    # (синтаксис `имя|узел`), поэтому у самого держателя data-портов нет —
+    # порты есть у бриджа внутри него.
+    # -------------------------------------------------------------------------
+    ext-sw:
+      kind: linux
+      image: gis/linux:latest
+      network-mode: none
+    "ext-br|ext-sw":
+      kind: bridge
+      network-mode: container:ext-sw
+      startup-delay: 2
+
+    dmz-sw:
+      kind: linux
+      image: gis/linux:latest
+      network-mode: none
+      binds: [ "configs/dmz-sw:/etc/clab:ro" ]
+      exec: [ "sh /etc/clab/mirror.sh" ]
+    "dmz-br|dmz-sw":
+      kind: bridge
+      network-mode: container:dmz-sw
+      startup-delay: 2
+
+    lan-sw:
+      kind: linux
+      image: gis/linux:latest
+      network-mode: none
+    "lan-br|lan-sw":
+      kind: bridge
+      network-mode: container:lan-sw
+      startup-delay: 2
+
+    # -------------------------------------------------------------------------
+    # Межсетевые экраны (nftables).
+    #   fw1: eth1 — внешняя сеть, eth2 — ДМЗ
+    #   fw2: eth1 — ДМЗ,          eth2 — внутренняя сеть
+    # -------------------------------------------------------------------------
+    fw1:
+      kind: linux
+      image: gis/linux:latest
+      network-mode: none
+      binds: [ "configs/__clabNodeName__:/etc/clab:ro" ]
+      env:
+        WAN_ADDR: "198.51.100.1/24"
+        DMZ_ADDR: "10.10.10.1/24"
+        LAN_NET: "10.10.20.0/24"
+        FW2_DMZ: "10.10.10.2"
+      sysctls:
+        net.ipv4.ip_forward: "1"
+      exec: [ "sh /etc/clab/init.sh" ]
+
+    fw2:
+      kind: linux
+      image: gis/linux:latest
+      network-mode: none
+      binds: [ "configs/__clabNodeName__:/etc/clab:ro" ]
+      env:
+        DMZ_ADDR: "10.10.10.2/24"
+        LAN_ADDR: "10.10.20.1/24"
+        DMZ_GW: "10.10.10.1"
+      sysctls:
+        net.ipv4.ip_forward: "1"
+      exec: [ "sh /etc/clab/init.sh" ]
+
+    # -------------------------------------------------------------------------
+    # Внешняя сеть (имитация интернета)
+    # -------------------------------------------------------------------------
+    # «Легитимный пользователь» с графикой + OpenVPN-клиент: подключается по
+    # LDAP-учётке и получает доступ во внутреннюю сеть.
+    ext-host:
+      kind: linux
+      image: gis/arm:latest
+      mgmt-ipv4: "172.20.20.101"
+      shm-size: "1gb"
+      devices:
+        - /dev/net/tun
+      binds: [ "./vpn-client:/etc/openvpn/client" ]
+      env:
+        ADDR: "198.51.100.10/24"
+        GW: "198.51.100.1"
+
+    attacker:
+      kind: linux
+      image: gis/linux:latest
+      network-mode: none
+      binds: [ "configs/host:/etc/clab:ro" ]
+      env:
+        ADDR: "198.51.100.100/24"
+        GW: "198.51.100.1"
+      exec: [ "sh /etc/clab/init.sh" ]
+
+    # Внешний DNS — имитация DNS интернета (аналог «GOOGLE DNS» на схеме).
+    ext-dns:
+      kind: linux
+      image: gis/dns:latest
+      network-mode: none
+      binds: [ "configs/ext-dns:/etc/clab:ro" ]
+      env:
+        ADDR: "198.51.100.53/24"
+        GW: "198.51.100.1"
+        UPSTREAM_IP: "198.51.100.80"
+      exec: [ "sh /etc/clab/init.sh" ]
+
+    # Внешний «сайт» — имитация сайта в интернете.
+    ext-web:
+      kind: linux
+      image: gis/web:latest
+      network-mode: none
+      binds:
+        - "configs/host:/etc/clab:ro"
+        - "configs/ext-web/html:/usr/share/nginx/html:ro"
+        # Любой путь отдаёт index.html — «сайт» существует по любому URL.
+        - "configs/ext-web/nginx.conf:/etc/nginx/conf.d/default.conf:ro"
+      env:
+        ADDR: "198.51.100.80/24"
+        GW: "198.51.100.1"
+      exec: [ "sh /etc/clab/init.sh" ]
+
+    # -------------------------------------------------------------------------
+    # ДМЗ: публичные сервисы
+    # -------------------------------------------------------------------------
+    # резолвер для всего стенда
+    dns:
+      kind: linux
+      image: gis/dns:latest
+      network-mode: none
+      binds: [ "configs/__clabNodeName__:/etc/clab:ro" ]
+      env:
+        ADDR: "10.10.10.10/24"
+        INTERNAL_NET: "10.10.20.0/24"
+        INTERNAL_GW: "10.10.10.2"
+        DMZ_GW: "10.10.10.1"
+      exec: [ "sh /etc/clab/init.sh" ]
+
+    # RADIUS (FreeRADIUS + LDAP FreeIPA)
+    radius:
+      kind: linux
+      image: gis/freeradius:latest
+      network-mode: none
+      restart-policy: "no"
+      binds: [ "configs/radius:/etc/clab:ro" ]
+      env:
+        ADDR: "10.10.10.15/24"
+        GW: "10.10.10.1"
+        INTERNAL_NET: "10.10.20.0/24"
+        INTERNAL_GW: "10.10.10.2"
+        LDAP_SERVER: "ldap://10.10.20.10"
+        LDAP_HOST: "10.10.20.10"
+        LDAP_PORT: "389"
+        LDAP_BIND_DN: "uid=radius,cn=users,cn=accounts,dc=otlichnik,dc=lab"
+        LDAP_PASSWORD: "RadiusPass123"
+        LDAP_BASE_DN: "cn=users,cn=accounts,dc=otlichnik,dc=lab"
+
+    # WEB (nginx)
+    web:
+      kind: linux
+      image: gis/web:latest
+      network-mode: none
+      binds:
+        - "configs/host:/etc/clab:ro"
+        - "configs/web/html:/usr/share/nginx/html:ro"
+      env:
+        ADDR: "10.10.10.11/24"
+        GW: "10.10.10.1"
+        INTERNAL_NET: "10.10.20.0/24"
+        INTERNAL_GW: "10.10.10.2"
+        DNS_SERVER: "10.10.10.10"
+      exec: [ "sh /etc/clab/init.sh" ]
+
+    # FTP (vsftpd)
+    ftp:
+      kind: linux
+      image: gis/ftp:latest
+      network-mode: none
+      env:
+        ADDR: "10.10.10.12/24"
+        GW: "10.10.10.1"
+        INTERNAL_NET: "10.10.20.0/24"
+        INTERNAL_GW: "10.10.10.2"
+        FTP_USER: "ftpuser"
+        FTP_PASS: "ftppass"
+        PASV_ADDRESS: "10.10.10.12"
+
+    # EML (postfix + dovecot)
+    eml:
+      kind: linux
+      image: gis/eml:latest
+      network-mode: none
+      env:
+        ADDR: "10.10.10.13/24"
+        GW: "10.10.10.1"
+        INTERNAL_NET: "10.10.20.0/24"
+        INTERNAL_GW: "10.10.10.2"
+        MAIL_HOST: "mail.otlichnik.lab"
+        MAIL_DOMAIN: "otlichnik.lab"
+        MAIL_USER: "mailuser"
+        MAIL_PASS: "mailpass"
+
+    # VPN (OpenVPN + RADIUS)
+    vpn:
+      kind: linux
+      image: gis/vpn:latest
+      network-mode: none
+      sysctls:
+        net.ipv4.ip_forward: "1"
+      devices:
+        - /dev/net/tun
+      volumes:
+        - "vpn-data:/etc/openvpn/certs"
+      env:
+        ADDR: "10.10.10.14/24"
+        GW: "10.10.10.1"
+        INTERNAL_NET: "10.10.20.0/24"
+        INTERNAL_GW: "10.10.10.2"
+        RADIUS_SERVER: "10.10.10.15"
+        RADIUS_SECRET: "testing123"
+        VPN_PORT: "1194"
+
+    # IDS (Suricata) — пассивный сенсор на сегменте ДМЗ
+    ids:
+      kind: linux
+      image: gis/ids:latest
+      network-mode: none
+      binds: [ "configs/ids:/etc/clab:ro" ]
+      env:
+        IDS_IFACE: "eth1"
+
+    # -------------------------------------------------------------------------
+    # Внутренняя сеть: captive-портал, АРМ, DC (FreeIPA), БД
+    # -------------------------------------------------------------------------
+    # captive-портал (NAS): шлюз АРМ; доступ в интернет — после авторизации в RADIUS
+    portal:
+      kind: linux
+      image: gis/portal:latest
+      network-mode: none
+      binds: [ "configs/portal:/etc/clab:ro" ]
+      sysctls:
+        net.ipv4.ip_forward: "1"
+      env:
+        ADDR: "10.10.20.2/24"
+        GW: "10.10.20.1"
+        PORTAL_IP: "10.10.20.2"
+        PORTAL_PORT: "80"
+        RADIUS_SERVER: "10.10.10.15"
+        RADIUS_SECRET: "testing123"
+        SESSION_TIMEOUT: "3600s"
+        # Куда вернуть браузер, если исходный сайт не был запомнен
+        # (например, портал открыли по прямому IP).
+        DEFAULT_REDIRECT: "http://198.51.100.80/"
+
+    # АРМ с графикой (noVNC); шлюз — captive-портал
+    arm:
+      kind: linux
+      image: gis/arm:latest
+      mgmt-ipv4: "172.20.20.100"
+      shm-size: "1gb"
+      dns:
+        servers: [ "10.10.10.10" ]
+      env:
+        ADDR: "10.10.20.12/24"
+        GW: "10.10.20.2"
+        # Первый открытый сайт в Firefox: пока АРМ не авторизован,
+        # портал перехватит его и покажет страницу входа.
+        HOME_URL: "http://example.com/"
+
+    # DC — FreeIPA (Kerberos/LDAP, мастер-зона otlichnik.lab)
+    ipa:
+      kind: linux
+      image: gis/ipa:latest
+      network-mode: none
+      hostname: ipa.otlichnik.lab
+      restart-policy: "no"
+      # privileged: true ломает GSSAPI/SPNEGO (freeipa-container#259)
+      privileged: false
+      cap-add:
+        - NET_ADMIN
+        - NET_BIND_SERVICE
+        - CHOWN
+        - DAC_OVERRIDE
+        - FOWNER
+        - FSETID
+        - MKNOD
+        - SETFCAP
+        - SETUID
+        - SETGID
+        - KILL
+        - AUDIT_WRITE
+      cgroupns-mode: host
+      tmpfs:
+        /run: "rw,nosuid,nodev"
+        /tmp: "rw,nosuid,nodev"
+      sysctls:
+        net.ipv6.conf.all.disable_ipv6: "0"
+      binds:
+        - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
+        - "/dev/urandom:/dev/random:ro"
+      volumes:
+        - "ipa-data:/data"
+      env:
+        ADDR: "10.10.20.10/24"
+        GW: "10.10.20.1"
+        IPA_FQDN: "ipa.otlichnik.lab"
+        IPA_SERVER_IP: "10.10.20.10"
+        PASSWORD: "Secret123"
+        # --no-forwarders: внешний резолвинг обслуживает dns в ДМЗ, не BIND FreeIPA
+        # --ip-address не используем: ломает встроенный ipa-client-install (issue #274)
+        IPA_SERVER_INSTALL_OPTS: "-U -r OTLICHNIK.LAB --domain=otlichnik.lab --setup-dns --no-forwarders --no-ntp --skip-mem-check"
+
+    # БД (postgres)
+    db:
+      kind: linux
+      image: gis/postgres:latest
+      network-mode: none
+      binds: [ "configs/host:/etc/clab:ro" ]
+      env:
+        ADDR: "10.10.20.11/24"
+        GW: "10.10.20.1"
+        DNS_SERVER: "10.10.10.10"
+        POSTGRES_PASSWORD: "Secret123"
+      exec: [ "sh /etc/clab/init.sh" ]
+
+  links:
+    # --- внешний сегмент ---
+    - endpoints: [ "ext-br|ext-sw:to-fw1", "fw1:eth1" ]
+    - endpoints: [ "ext-br|ext-sw:to-ext-host", "ext-host:eth1" ]
+    - endpoints: [ "ext-br|ext-sw:to-attacker", "attacker:eth1" ]
+    - endpoints: [ "ext-br|ext-sw:to-ext-dns", "ext-dns:eth1" ]
+    - endpoints: [ "ext-br|ext-sw:to-ext-web", "ext-web:eth1" ]
+
+    # --- ДМЗ ---
+    - endpoints: [ "dmz-br|dmz-sw:to-fw1", "fw1:eth2" ]
+    - endpoints: [ "dmz-br|dmz-sw:to-fw2", "fw2:eth1" ]
+    - endpoints: [ "dmz-br|dmz-sw:to-dns", "dns:eth1" ]
+    - endpoints: [ "dmz-br|dmz-sw:to-radius", "radius:eth1" ]
+    - endpoints: [ "dmz-br|dmz-sw:to-web", "web:eth1" ]
+    - endpoints: [ "dmz-br|dmz-sw:to-ftp", "ftp:eth1" ]
+    - endpoints: [ "dmz-br|dmz-sw:to-eml", "eml:eth1" ]
+    - endpoints: [ "dmz-br|dmz-sw:to-vpn", "vpn:eth1" ]
+    - endpoints: [ "dmz-br|dmz-sw:to-ids", "ids:eth1" ]
+
+    # --- внутренняя сеть ---
+    - endpoints: [ "lan-br|lan-sw:to-fw2", "fw2:eth2" ]
+    - endpoints: [ "lan-br|lan-sw:to-arm", "arm:eth1" ]
+    - endpoints: [ "lan-br|lan-sw:to-portal", "portal:eth1" ]
+    - endpoints: [ "lan-br|lan-sw:to-ipa", "ipa:eth1" ]
+    - endpoints: [ "lan-br|lan-sw:to-db", "db:eth1" ]

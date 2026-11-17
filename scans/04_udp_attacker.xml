@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Sat Nov 14 10:47:22 2026 as: nmap -Pn -n -sU -sV -&#45;top-ports 30 -&#45;open -iL /out/targets.txt -oA /out/04_udp_attacker -->
+<nmaprun scanner="nmap" args="nmap -Pn -n -sU -sV -&#45;top-ports 30 -&#45;open -iL /out/targets.txt -oA /out/04_udp_attacker" start="1794653242" startstr="Sat Nov 14 10:47:22 2026" version="7.93" xmloutputversion="1.05">
+<scaninfo type="udp" protocol="udp" numservices="30" services="53,67-69,111,123,135,137-139,161-162,445,500,514,520,631,996-999,1434,1701,1900,3283,4500,5353,49152-49154"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="198.51.100.10" addrtype="ipv4"/>
+<address addr="AA:C1:AB:2C:70:D7" addrtype="mac"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="198.51.100.53" addrtype="ipv4"/>
+<address addr="AA:C1:AB:27:EF:36" addrtype="mac"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="198.51.100.80" addrtype="ipv4"/>
+<address addr="AA:C1:AB:B8:12:FE" addrtype="mac"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="198.51.100.1" addrtype="ipv4"/>
+<address addr="AA:C1:AB:C7:B5:35" addrtype="mac"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1794653242" endtime="1794653472"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="198.51.100.1" addrtype="ipv4"/>
+<address addr="AA:C1:AB:C7:B5:35" addrtype="mac"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="12">
+<extrareasons reason="port-unreach" count="12" proto="udp" ports="69,135,137-139,161-162,520,631,4500,49152,49154"/>
+</extraports>
+<port protocol="udp" portid="53"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="udp" portid="67"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="dhcps" method="table" conf="3"/></port>
+<port protocol="udp" portid="68"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="dhcpc" method="table" conf="3"/></port>
+<port protocol="udp" portid="111"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="rpcbind" method="table" conf="3"/></port>
+<port protocol="udp" portid="123"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ntp" method="table" conf="3"/></port>
+<port protocol="udp" portid="445"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="udp" portid="500"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="isakmp" method="table" conf="3"/></port>
+<port protocol="udp" portid="514"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="syslog" method="table" conf="3"/></port>
+<port protocol="udp" portid="996"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="vsinet" method="table" conf="3"/></port>
+<port protocol="udp" portid="997"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="maitrd" method="table" conf="3"/></port>
+<port protocol="udp" portid="998"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="puparp" method="table" conf="3"/></port>
+<port protocol="udp" portid="999"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="applix" method="table" conf="3"/></port>
+<port protocol="udp" portid="1434"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ms-sql-m" method="table" conf="3"/></port>
+<port protocol="udp" portid="1701"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="L2TP" method="table" conf="3"/></port>
+<port protocol="udp" portid="1900"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="upnp" method="table" conf="3"/></port>
+<port protocol="udp" portid="3283"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netassistant" method="table" conf="3"/></port>
+<port protocol="udp" portid="5353"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="zeroconf" method="table" conf="3"/></port>
+<port protocol="udp" portid="49153"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+</ports>
+<times srtt="49" rttvar="189" to="100000"/>
+</host>
+<host starttime="1794653242" endtime="1794653471"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="198.51.100.10" addrtype="ipv4"/>
+<address addr="AA:C1:AB:2C:70:D7" addrtype="mac"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="13">
+<extrareasons reason="port-unreach" count="13" proto="udp" ports="111,135,137-139,161,445,631,998,3283,4500,49152-49153"/>
+</extraports>
+<port protocol="udp" portid="53"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="udp" portid="67"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="dhcps" method="table" conf="3"/></port>
+<port protocol="udp" portid="68"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="dhcpc" method="table" conf="3"/></port>
+<port protocol="udp" portid="69"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="tftp" method="table" conf="3"/></port>
+<port protocol="udp" portid="123"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ntp" method="table" conf="3"/></port>
+<port protocol="udp" portid="162"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmptrap" method="table" conf="3"/></port>
+<port protocol="udp" portid="500"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="isakmp" method="table" conf="3"/></port>
+<port protocol="udp" portid="514"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="syslog" method="table" conf="3"/></port>
+<port protocol="udp" portid="520"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="route" method="table" conf="3"/></port>
+<port protocol="udp" portid="996"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="vsinet" method="table" conf="3"/></port>
+<port protocol="udp" portid="997"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="maitrd" method="table" conf="3"/></port>
+<port protocol="udp" portid="999"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="applix" method="table" conf="3"/></port>
+<port protocol="udp" portid="1434"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ms-sql-m" method="table" conf="3"/></port>
+<port protocol="udp" portid="1701"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="L2TP" method="table" conf="3"/></port>
+<port protocol="udp" portid="1900"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="upnp" method="table" conf="3"/></port>
+<port protocol="udp" portid="5353"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="zeroconf" method="table" conf="3"/></port>
+<port protocol="udp" portid="49154"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+</ports>
+<times srtt="58" rttvar="147" to="100000"/>
+</host>
+<host starttime="1794653242" endtime="1794653471"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="198.51.100.53" addrtype="ipv4"/>
+<address addr="AA:C1:AB:27:EF:36" addrtype="mac"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="13">
+<extrareasons reason="port-unreach" count="13" proto="udp" ports="69,123,135,137-139,161-162,445,631,996,4500,49152"/>
+</extraports>
+<port protocol="udp" portid="53"><state state="open" reason="udp-response" reason_ttl="64"/><service name="domain" product="dnsmasq" version="2.90" method="probed" conf="10"><cpe>cpe:/a:thekelleys:dnsmasq:2.90</cpe></service></port>
+<port protocol="udp" portid="67"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="dhcps" method="table" conf="3"/></port>
+<port protocol="udp" portid="68"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="dhcpc" method="table" conf="3"/></port>
+<port protocol="udp" portid="111"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="rpcbind" method="table" conf="3"/></port>
+<port protocol="udp" portid="500"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="isakmp" method="table" conf="3"/></port>
+<port protocol="udp" portid="514"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="syslog" method="table" conf="3"/></port>
+<port protocol="udp" portid="520"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="route" method="table" conf="3"/></port>
+<port protocol="udp" portid="997"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="maitrd" method="table" conf="3"/></port>
+<port protocol="udp" portid="998"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="puparp" method="table" conf="3"/></port>
+<port protocol="udp" portid="999"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="applix" method="table" conf="3"/></port>
+<port protocol="udp" portid="1434"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ms-sql-m" method="table" conf="3"/></port>
+<port protocol="udp" portid="1701"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="L2TP" method="table" conf="3"/></port>
+<port protocol="udp" portid="1900"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="upnp" method="table" conf="3"/></port>
+<port protocol="udp" portid="3283"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netassistant" method="table" conf="3"/></port>
+<port protocol="udp" portid="5353"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="zeroconf" method="table" conf="3"/></port>
+<port protocol="udp" portid="49153"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="udp" portid="49154"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+</ports>
+<times srtt="34" rttvar="81" to="100000"/>
+</host>
+<host starttime="1794653472" endtime="1794655421"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.10.2" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="open|filtered" count="30">
+<extrareasons reason="no-response" count="30" proto="udp" ports="53,67-69,111,123,135,137-139,161-162,445,500,514,520,631,996-999,1434,1701,1900,3283,4500,5353,49152-49154"/>
+</extraports>
+</ports>
+</host>
+<host starttime="1794653472" endtime="1794655421"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.10.10" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="open|filtered" count="30">
+<extrareasons reason="no-response" count="30" proto="udp" ports="53,67-69,111,123,135,137-139,161-162,445,500,514,520,631,996-999,1434,1701,1900,3283,4500,5353,49152-49154"/>
+</extraports>
+</ports>
+</host>
+<host starttime="1794653472" endtime="1794655421"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.10.11" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="open|filtered" count="30">
+<extrareasons reason="no-response" count="30" proto="udp" ports="53,67-69,111,123,135,137-139,161-162,445,500,514,520,631,996-999,1434,1701,1900,3283,4500,5353,49152-49154"/>
+</extraports>
+</ports>
+</host>
+<host starttime="1794653472" endtime="1794655421"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.10.12" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="open|filtered" count="30">
+<extrareasons reason="no-response" count="30" proto="udp" ports="53,67-69,111,123,135,137-139,161-162,445,500,514,520,631,996-999,1434,1701,1900,3283,4500,5353,49152-49154"/>
+</extraports>
+</ports>
+</host>
+<host starttime="1794653472" endtime="1794655421"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.10.13" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="open|filtered" count="30">
+<extrareasons reason="no-response" count="30" proto="udp" ports="53,67-69,111,123,135,137-139,161-162,445,500,514,520,631,996-999,1434,1701,1900,3283,4500,5353,49152-49154"/>
+</extraports>
+</ports>
+</host>
+<host starttime="1794653473" endtime="1794655421"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.10.14" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="open|filtered" count="30">
+<extrareasons reason="no-response" count="30" proto="udp" ports="53,67-69,111,123,135,137-139,161-162,445,500,514,520,631,996-999,1434,1701,1900,3283,4500,5353,49152-49154"/>
+</extraports>
+</ports>
+</host>
+<host starttime="1794653473" endtime="1794655418"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.10.15" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="open|filtered" count="30">
+<extrareasons reason="no-response" count="30" proto="udp" ports="53,67-69,111,123,135,137-139,161-162,445,500,514,520,631,996-999,1434,1701,1900,3283,4500,5353,49152-49154"/>
+</extraports>
+</ports>
+</host>
+<host starttime="1794653472" endtime="1794655421"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.20.1" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="open|filtered" count="30">
+<extrareasons reason="no-response" count="30" proto="udp" ports="53,67-69,111,123,135,137-139,161-162,445,500,514,520,631,996-999,1434,1701,1900,3283,4500,5353,49152-49154"/>
+</extraports>
+</ports>
+</host>
+<host starttime="1794653472" endtime="1794655414"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.20.2" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="open|filtered" count="30">
+<extrareasons reason="no-response" count="30" proto="udp" ports="53,67-69,111,123,135,137-139,161-162,445,500,514,520,631,996-999,1434,1701,1900,3283,4500,5353,49152-49154"/>
+</extraports>
+</ports>
+</host>
+<host starttime="1794653472" endtime="1794655421"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.20.10" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="open|filtered" count="30">
+<extrareasons reason="no-response" count="30" proto="udp" ports="53,67-69,111,123,135,137-139,161-162,445,500,514,520,631,996-999,1434,1701,1900,3283,4500,5353,49152-49154"/>
+</extraports>
+</ports>
+</host>
+<host starttime="1794653472" endtime="1794655421"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.20.11" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="open|filtered" count="30">
+<extrareasons reason="no-response" count="30" proto="udp" ports="53,67-69,111,123,135,137-139,161-162,445,500,514,520,631,996-999,1434,1701,1900,3283,4500,5353,49152-49154"/>
+</extraports>
+</ports>
+</host>
+<host starttime="1794653472" endtime="1794655421"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.20.12" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="open|filtered" count="30">
+<extrareasons reason="no-response" count="30" proto="udp" ports="53,67-69,111,123,135,137-139,161-162,445,500,514,520,631,996-999,1434,1701,1900,3283,4500,5353,49152-49154"/>
+</extraports>
+</ports>
+</host>
+<runstats><finished time="1794655421" timestr="Sat Nov 14 11:23:41 2026" summary="Nmap done at Sat Nov 14 11:23:41 2026; 17 IP addresses (17 hosts up) scanned in 2179.22 seconds" elapsed="2179.22" exit="success"/><hosts up="17" down="0" total="17"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,197 @@
+######## arm
+OS: Debian GNU/Linux 12 (bookworm); kernel 6.12.116+deb13-amd64; user root
+[uid0] root 
+[login-shell users] root:0 nova:105 
+[passwd -S, без хешей]
+[sudoers] 
+[login.defs] UMASK		022;PASS_MAX_DAYS	99999;PASS_MIN_DAYS	0;PASS_WARN_AGE	7;ENCRYPT_METHOD SHA512;
+[pam pwquality/faillock] password	requisite			pam_pwquality.so retry=3;
+[sshd] нет sshd
+[listen] tcp:0.0.0.0:5900 tcp:0.0.0.0:6080 tcp:127.0.0.11:40857 tcp:[::]:5900 udp:127.0.0.11:33945 
+[suid usr] gpasswd passwd newgrp mount chsh umount su chfn ksu 
+[world-writable в /etc] 
+[shadow права] 640 root:shadow
+[AV/СЗИ] |auditd: aide: fail2ban:
+[updates] pkgmgr: /usr/bin/apt 
+######## db
+OS: Debian GNU/Linux 13 (trixie); kernel 6.12.116+deb13-amd64; user root
+[uid0] root 
+[login-shell users] root:0 postgres:999 
+[passwd -S, без хешей]
+[sudoers] 
+[login.defs] PASS_MAX_DAYS	99999;PASS_MIN_DAYS	0;PASS_WARN_AGE	7;ENCRYPT_METHOD YESCRYPT;
+[pam pwquality/faillock] 
+[sshd] нет sshd
+[listen] tcp:0.0.0.0:5432 tcp:[::]:5432 
+[suid usr] gpasswd passwd newgrp mount chsh umount su chfn 
+[world-writable в /etc] 
+[shadow права] 640 root:shadow
+[AV/СЗИ] |auditd: aide: fail2ban:
+[updates] pkgmgr: /usr/bin/apt 
+######## ipa
+OS: AlmaLinux 9.8 (Olive Jaguar); kernel 6.12.116+deb13-amd64; user root
+[uid0] root 
+[login-shell users] root:0 
+[passwd -S, без хешей]
+[sudoers] 
+[login.defs] UMASK		022;PASS_MAX_DAYS	99999;PASS_MIN_DAYS	0;PASS_WARN_AGE	7;ENCRYPT_METHOD SHA512;
+[pam pwquality/faillock] password    requisite                                    pam_pwquality.so local_users_only;
+[sshd] нет sshd
+[listen] tcp:*:389 tcp:*:443 tcp:*:636 tcp:*:80 tcp:*:8080 tcp:*:8443 tcp:0.0.0.0:464 tcp:0.0.0.0:749 tcp:0.0.0.0:88 tcp:10.10.20.10:53 tcp:127.0.0.1:53 tcp:127.0.0.1:953 tcp:[::1]:53 tcp:[::1]:8009 tcp:[::1]:953 tcp:[::]:464 tcp:[::]:749 tcp:[::]:88 tcp:[::ffff:127.0.0.1]:8005 tcp:[::ffff:127.0.0.1]:8009 tcp:[fe80::a8c1:abff:fe24:c5e7]%eth1:53 udp:0.0.0.0:464 udp:0.0.0.0:88 udp:10.10.20.10:53 udp:127.0.0.1:53 udp:[::1]:53 udp:[::]:464 udp:[::]:88 udp:[fe80::a8c1:abff:fe24:c5e7]%eth1:53 
+[suid usr] gpasswd passwd newgrp mount chage umount su crontab ksu unix_chkpwd pam_timestamp_check userhelper mount.nfs 
+[world-writable в /etc] 
+[shadow права] 0 root:root
+[AV/СЗИ] |auditd: aide: fail2ban:
+[updates] pkgmgr: /usr/bin/dnf /usr/bin/yum 
+######## web
+OS: Alpine Linux v3.24; kernel 6.12.116+deb13-amd64; user root
+[uid0] root 
+[login-shell users] root:0 
+[passwd -S, без хешей]
+[sudoers] 
+[login.defs] 
+[pam pwquality/faillock] 
+[sshd] нет sshd
+[listen] tcp:0.0.0.0:80 tcp:[::]:80 
+[suid usr] 
+[world-writable в /etc] 
+[shadow права] 640 root:shadow
+[AV/СЗИ] |auditd: aide: fail2ban:
+[updates] pkgmgr: 
+######## ftp
+OS: Debian GNU/Linux 12 (bookworm); kernel 6.12.116+deb13-amd64; user root
+[uid0] root 
+[login-shell users] root:0 ftpuser:1000 
+[passwd -S, без хешей]
+  ftpuser P 2026-11-14
+[sudoers] 
+[login.defs] UMASK		022;PASS_MAX_DAYS	99999;PASS_MIN_DAYS	0;PASS_WARN_AGE	7;ENCRYPT_METHOD SHA512;
+[pam pwquality/faillock] 
+[sshd] нет sshd
+[listen] tcp:0.0.0.0:21 
+[suid usr] gpasswd passwd newgrp mount chsh umount su chfn 
+[world-writable в /etc] 
+[shadow права] 640 root:shadow
+[AV/СЗИ] |auditd: aide: fail2ban:
+[updates] pkgmgr: /usr/bin/apt 
+######## eml
+OS: Debian GNU/Linux 12 (bookworm); kernel 6.12.116+deb13-amd64; user root
+[uid0] root 
+[login-shell users] root:0 mailuser:1000 
+[passwd -S, без хешей]
+  mailuser P 2026-11-14
+[sudoers] 
+[login.defs] UMASK		022;PASS_MAX_DAYS	99999;PASS_MIN_DAYS	0;PASS_WARN_AGE	7;ENCRYPT_METHOD SHA512;
+[pam pwquality/faillock] 
+[sshd] нет sshd
+[listen] tcp:0.0.0.0:143 tcp:0.0.0.0:25 tcp:[::]:143 
+[suid usr] gpasswd passwd newgrp mount chsh umount su chfn 
+[world-writable в /etc] 
+[shadow права] 640 root:shadow
+[AV/СЗИ] |auditd: aide: fail2ban:
+[updates] pkgmgr: /usr/bin/apt 
+######## dns
+OS: Debian GNU/Linux 12 (bookworm); kernel 6.12.116+deb13-amd64; user root
+[uid0] root 
+[login-shell users] root:0 
+[passwd -S, без хешей]
+[sudoers] 
+[login.defs] UMASK		022;PASS_MAX_DAYS	99999;PASS_MIN_DAYS	0;PASS_WARN_AGE	7;ENCRYPT_METHOD SHA512;
+[pam pwquality/faillock] 
+[sshd] нет sshd
+[listen] tcp:0.0.0.0:53 udp:0.0.0.0:53 
+[suid usr] gpasswd passwd newgrp mount chsh umount su chfn 
+[world-writable в /etc] 
+[shadow права] 640 root:shadow
+[AV/СЗИ] |auditd: aide: fail2ban:
+[updates] pkgmgr: /usr/bin/apt 
+######## radius
+OS: Ubuntu 26.04.1 LTS; kernel 6.12.116+deb13-amd64; user root
+[uid0] root 
+[login-shell users] root:0 ubuntu:1000 
+[passwd -S, без хешей]
+[sudoers] 
+[login.defs] PASS_MAX_DAYS	99999;PASS_MIN_DAYS	0;PASS_WARN_AGE	7;ENCRYPT_METHOD YESCRYPT;
+[pam pwquality/faillock] 
+[sshd] нет sshd
+[listen] udp:0.0.0.0:1812 udp:0.0.0.0:1813 udp:0.0.0.0:49449 udp:127.0.0.1:18120 
+[suid usr] gpasswd passwd mount chsh umount su chfn 
+[world-writable в /etc] 
+[shadow права] 640 root:shadow
+[AV/СЗИ] |auditd: aide: fail2ban:
+[updates] pkgmgr: /usr/bin/apt 
+######## portal
+OS: Debian GNU/Linux 12 (bookworm); kernel 6.12.116+deb13-amd64; user root
+[uid0] root 
+[login-shell users] root:0 
+[passwd -S, без хешей]
+[sudoers] 
+[login.defs] UMASK		022;PASS_MAX_DAYS	99999;PASS_MIN_DAYS	0;PASS_WARN_AGE	7;ENCRYPT_METHOD SHA512;
+[pam pwquality/faillock] 
+[sshd] нет sshd
+[listen] tcp:0.0.0.0:80 
+[suid usr] gpasswd passwd newgrp mount chsh umount su chfn 
+[world-writable в /etc] 
+[shadow права] 640 root:shadow
+[AV/СЗИ] |auditd: aide: fail2ban:
+[updates] pkgmgr: /usr/bin/apt 
+######## vpn
+OS: Debian GNU/Linux 12 (bookworm); kernel 6.12.116+deb13-amd64; user root
+[uid0] root 
+[login-shell users] root:0 
+[passwd -S, без хешей]
+[sudoers] 
+[login.defs] UMASK		022;PASS_MAX_DAYS	99999;PASS_MIN_DAYS	0;PASS_WARN_AGE	7;ENCRYPT_METHOD SHA512;
+[pam pwquality/faillock] 
+[sshd] нет sshd
+[listen] udp:0.0.0.0:1194 
+[suid usr] gpasswd passwd newgrp mount chsh umount su chfn 
+[world-writable в /etc] 
+[shadow права] 640 root:shadow
+[AV/СЗИ] |auditd: aide: fail2ban:
+[updates] pkgmgr: /usr/bin/apt 
+######## fw1
+OS: Debian GNU/Linux 12 (bookworm); kernel 6.12.116+deb13-amd64; user root
+[uid0] root 
+[login-shell users] root:0 
+[passwd -S, без хешей]
+[sudoers] 
+[login.defs] UMASK		022;PASS_MAX_DAYS	99999;PASS_MIN_DAYS	0;PASS_WARN_AGE	7;ENCRYPT_METHOD SHA512;
+[pam pwquality/faillock] 
+[sshd] нет sshd
+[listen] 
+[suid usr] gpasswd passwd newgrp mount chsh umount su chfn 
+[world-writable в /etc] 
+[shadow права] 640 root:shadow
+[AV/СЗИ] |auditd: aide: fail2ban:
+[updates] pkgmgr: /usr/bin/apt 
+######## fw2
+OS: Debian GNU/Linux 12 (bookworm); kernel 6.12.116+deb13-amd64; user root
+[uid0] root 
+[login-shell users] root:0 
+[passwd -S, без хешей]
+[sudoers] 
+[login.defs] UMASK		022;PASS_MAX_DAYS	99999;PASS_MIN_DAYS	0;PASS_WARN_AGE	7;ENCRYPT_METHOD SHA512;
+[pam pwquality/faillock] 
+[sshd] нет sshd
+[listen] 
+[suid usr] gpasswd passwd newgrp mount chsh umount su chfn 
+[world-writable в /etc] 
+[shadow права] 640 root:shadow
+[AV/СЗИ] |auditd: aide: fail2ban:
+[updates] pkgmgr: /usr/bin/apt 
+######## ids
+OS: AlmaLinux 9.8 (Olive Jaguar); kernel 6.12.116+deb13-amd64; user root
+[uid0] root 
+[login-shell users] root:0 suricata:998 
+[passwd -S, без хешей]
+[sudoers] 
+[login.defs] UMASK		022;PASS_MAX_DAYS	99999;PASS_MIN_DAYS	0;PASS_WARN_AGE	7;ENCRYPT_METHOD SHA512;
+[pam pwquality/faillock] password    requisite     pam_pwquality.so try_first_pass local_users_only retry=3 authtok_type=;
+[sshd] нет sshd
+[listen] 
+[suid usr] gpasswd passwd newgrp mount chage umount su crontab unix_chkpwd pam_timestamp_check userhelper 
+[world-writable в /etc] 
+[shadow права] 0 root:root
+[AV/СЗИ] |auditd: aide: fail2ban:
+[updates] pkgmgr: /usr/bin/dnf /usr/bin/yum 

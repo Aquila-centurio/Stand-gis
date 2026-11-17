@@ -1,0 +1,5 @@
+#!/bin/sh
+# Заглушка /usr/bin/authselect для контейнера без systemd.
+# ipa-client-install пытается настроить PAM через authselect; нам для демо
+# достаточно NSS через SSSD, поэтому просто сообщаем об успехе.
+exit 0

@@ -1,0 +1,65 @@
+## fw1 /etc/clab
+-rwxr-xr-x 1 root root  243 Sep 16  2023 /etc/nftables.conf
+
+/etc/clab:
+total 20
+drwxr-xr-x 2 1000 1000 4096 Nov 12 16:49 .
+drwxr-xr-x 1 root root 4096 Nov 14 10:26 ..
+-rw-r--r-- 1 1000 1000 1296 Nov  1 16:49 init.sh
+-rw-r--r-- 1 1000 1000 1545 Nov  1 15:26 nftables.conf
+-rw-r--r-- 1 1000 1000  669 Nov  1 15:40 ulogd.conf
+-rw-r--r-- 1 root root 52271 Nov 14 11:29 /var/log/nft.log
+## fw2
+total 20
+drwxr-xr-x 2 1000 1000 4096 Nov 12 16:49 .
+drwxr-xr-x 1 root root 4096 Nov 14 10:26 ..
+-rw-r--r-- 1 1000 1000 1128 Nov  1 16:49 init.sh
+-rw-r--r-- 1 1000 1000 1603 Nov  1 15:56 nftables.conf
+-rw-r--r-- 1 1000 1000  669 Nov  1 15:40 ulogd.conf
+-rw-r--r-- 1 root root 6026 Nov 14 11:30 /var/log/nft.log
+## ids
+/etc/clab:
+total 12
+drwxr-xr-x 2 1000 1000 4096 Nov 12 16:49 .
+drwxr-xr-x 1 root root 4096 Nov 14 10:26 ..
+-rw-r--r-- 1 1000 1000 1036 Nov  1 14:27 local.rules
+
+/var/log/suricata:
+total 138224
+drwxr-xr-x 2 suricata suricata      4096 Nov 14 10:26 .
+drwxr-xr-x 1 root     root          4096 Oct 29 20:33 ..
+-rw-r--r-- 1 root     root     138028477 Nov 14 11:30 eve.json
+-rw-r--r-- 1 root     root           202 Nov 14 11:26 fast.log
+-rw-r--r-- 1 root     root       3485150 Nov 14 11:30 stats.log
+-rw-r--r-- 1 root     root          1630 Nov 14 10:26 suricata.log
+265084
+  # which stats are updated in the log.
+        #   state-update: false             # log packets triggering a TCP state update
+  # are updated.
+/usr/bin/suricata-update
+## vpn
+drwxr-xr-x 2 root root  4096 Jul  1 20:20 openvpn
+tail: cannot open '/var/log/ovpn-auth.log' for reading: No such file or directory
+port 1194
+proto udp
+dev tun
+ca /etc/openvpn/certs/ca.crt
+cert /etc/openvpn/certs/server.crt
+key /etc/openvpn/certs/server.key
+dh none
+topology subnet
+server 10.8.0.0 255.255.255.0
+ifconfig-pool-persist /etc/openvpn/ipp.txt
+push "route 10.10.20.0 255.255.255.0"
+keepalive 10 60
+auth-user-pass-verify /etc/openvpn/auth-radius.sh via-file
+script-security 2
+username-as-common-name
+verify-client-cert none
+duplicate-cn
+verb 3
+OpenVPN 2.6.14 x86_64-pc-linux-gnu [SSL (OpenSSL)] [LZO] [LZ4] [EPOLL] [PKCS11] [MH/PKTINFO] [AEAD] [DCO]
+## radius
+radius.log
+radwtmp
+radiusd: FreeRADIUS Version 3.2.10 (git #9071ea041), for host x86_64-pc-linux-gnu

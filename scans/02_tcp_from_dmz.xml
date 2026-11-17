@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Sat Nov 14 10:47:22 2026 as: nmap -Pn -n -sS -sV -p- -&#45;min-rate 3000 -&#45;open -iL /out/targets_internal.txt -oA /out/02_tcp_from_dmz -->
+<nmaprun scanner="nmap" args="nmap -Pn -n -sS -sV -p- -&#45;min-rate 3000 -&#45;open -iL /out/targets_internal.txt -oA /out/02_tcp_from_dmz" start="1794653242" startstr="Sat Nov 14 10:47:22 2026" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="10.10.10.2" addrtype="ipv4"/>
+<address addr="AA:C1:AB:74:05:D6" addrtype="mac"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="10.10.10.11" addrtype="ipv4"/>
+<address addr="AA:C1:AB:C2:95:AF" addrtype="mac"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="10.10.10.12" addrtype="ipv4"/>
+<address addr="AA:C1:AB:5D:6C:42" addrtype="mac"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="10.10.10.13" addrtype="ipv4"/>
+<address addr="AA:C1:AB:83:81:7C" addrtype="mac"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="10.10.10.14" addrtype="ipv4"/>
+<address addr="AA:C1:AB:E1:92:12" addrtype="mac"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="10.10.10.15" addrtype="ipv4"/>
+<address addr="AA:C1:AB:5F:4E:A4" addrtype="mac"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<hosthint><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="10.10.10.1" addrtype="ipv4"/>
+<address addr="AA:C1:AB:AC:0D:B5" addrtype="mac"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1794653242" endtime="1794653251"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="10.10.10.11" addrtype="ipv4"/>
+<address addr="AA:C1:AB:C2:95:AF" addrtype="mac"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65534">
+<extrareasons reason="reset" count="65534" proto="tcp" ports="1-79,81-65535"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="nginx" version="1.31.8" method="probed" conf="10"><cpe>cpe:/a:igor_sysoev:nginx:1.31.8</cpe></service></port>
+</ports>
+<times srtt="6" rttvar="0" to="100000"/>
+</host>
+<host starttime="1794653242" endtime="1794653251"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="10.10.10.12" addrtype="ipv4"/>
+<address addr="AA:C1:AB:5D:6C:42" addrtype="mac"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65534">
+<extrareasons reason="reset" count="65534" proto="tcp" ports="1-20,22-65535"/>
+</extraports>
+<port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ftp" product="vsftpd" version="3.0.3" ostype="Unix" method="probed" conf="10"><cpe>cpe:/a:vsftpd:vsftpd:3.0.3</cpe></service></port>
+</ports>
+<times srtt="5" rttvar="0" to="100000"/>
+</host>
+<host starttime="1794653252" endtime="1794653260"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="10.10.10.13" addrtype="ipv4"/>
+<address addr="AA:C1:AB:83:81:7C" addrtype="mac"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65533">
+<extrareasons reason="reset" count="65533" proto="tcp" ports="1-24,26-142,144-65535"/>
+</extraports>
+<port protocol="tcp" portid="25"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="smtp" product="Postfix smtpd" hostname=" mail.otlichnik.lab" method="probed" conf="10"><cpe>cpe:/a:postfix:postfix</cpe></service></port>
+<port protocol="tcp" portid="143"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="imap" product="Dovecot imapd" method="probed" conf="10"><cpe>cpe:/a:dovecot:dovecot</cpe></service></port>
+</ports>
+<times srtt="5" rttvar="0" to="100000"/>
+</host>
+<host starttime="1794653260" endtime="1794653267"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.10.10" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65534">
+<extrareasons reason="reset" count="65534" proto="tcp" ports="1-52,54-65535"/>
+</extraports>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="domain" product="Unbound" version="1.17.1" method="probed" conf="10"><cpe>cpe:/a:nlnetlabs:unbound:1.17.1</cpe></service></port>
+</ports>
+<times srtt="3" rttvar="0" to="100000"/>
+</host>
+<host starttime="1794653267" endtime="1794653463"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.20.10" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65532">
+<extrareasons reason="no-response" count="65532" proto="tcp" ports="1-52,54-388,390-635,637-65535"/>
+</extraports>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="domain" extrainfo="unknown banner: 9.16.23-RH" servicefp="SF-Port53-TCP:V=7.93%I=7%D=11/14%Time=6AF83D11%P=x86_64-pc-linux-gnu%r(DNSVersionBindReqTCP,37,&quot;\x005\0\x06\x85\0\0\x01\0\x01\0\0\0\0\x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03\0\0\0\0\0\x0b\n9\.16\.23-RH&quot;);" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ldap" extrainfo="Anonymous bind OK" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="636"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ldap" extrainfo="Anonymous bind OK" tunnel="ssl" method="probed" conf="10"/></port>
+</ports>
+<times srtt="224" rttvar="61" to="100000"/>
+</host>
+<runstats><finished time="1794653463" timestr="Sat Nov 14 10:51:03 2026" summary="Nmap done at Sat Nov 14 10:51:03 2026; 13 IP addresses (13 hosts up) scanned in 221.33 seconds" elapsed="221.33" exit="success"/><hosts up="13" down="0" total="13"/>
+</runstats>
+</nmaprun>

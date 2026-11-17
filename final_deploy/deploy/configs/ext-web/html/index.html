@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Внешний сайт (симуляция интернета)</title>
+</head>
+<body>
+    <h1>Внешний сайт</h1>
+    <p>Вы открыли <b id="site">внешний сайт</b><code id="path"></code>.</p>
+    <p>Это узел <b>ext-web</b> (198.51.100.80) — имитация сайта во внешней сети.
+       DNS-сервер стенда отвечает на любое внешнее имя этим адресом, поэтому
+       страница «представляется» тем доменом, который вы ввели.</p>
+    <p>Если ты видишь эту страницу с АРМ, значит авторизация на captive-портале
+       прошла и доступ в интернет открыт.</p>
+    <script>
+        // Показываем реальный Host/путь, чтобы было видно: после входа
+        // открылся именно запрошенный сайт, а не заглушка портала.
+        document.getElementById("site").textContent = location.host;
+        document.getElementById("path").textContent = location.pathname;
+        document.title = location.host + " — внешний сайт";
+    </script>
+</body>
+</html>

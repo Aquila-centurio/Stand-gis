@@ -1,0 +1,133 @@
+# Nmap 7.93 scan initiated Sat Nov 14 10:47:22 2026 as: nmap -Pn -n -sU -sV --top-ports 30 --open -iL /out/targets.txt -oA /out/04_udp_attacker
+Nmap scan report for 198.51.100.1
+Host is up (0.000049s latency).
+Not shown: 12 closed udp ports (port-unreach)
+PORT      STATE         SERVICE      VERSION
+53/udp    open|filtered domain
+67/udp    open|filtered dhcps
+68/udp    open|filtered dhcpc
+111/udp   open|filtered rpcbind
+123/udp   open|filtered ntp
+445/udp   open|filtered microsoft-ds
+500/udp   open|filtered isakmp
+514/udp   open|filtered syslog
+996/udp   open|filtered vsinet
+997/udp   open|filtered maitrd
+998/udp   open|filtered puparp
+999/udp   open|filtered applix
+1434/udp  open|filtered ms-sql-m
+1701/udp  open|filtered L2TP
+1900/udp  open|filtered upnp
+3283/udp  open|filtered netassistant
+5353/udp  open|filtered zeroconf
+49153/udp open|filtered unknown
+MAC Address: AA:C1:AB:C7:B5:35 (Unknown)
+
+Nmap scan report for 198.51.100.10
+Host is up (0.000058s latency).
+Not shown: 13 closed udp ports (port-unreach)
+PORT      STATE         SERVICE  VERSION
+53/udp    open|filtered domain
+67/udp    open|filtered dhcps
+68/udp    open|filtered dhcpc
+69/udp    open|filtered tftp
+123/udp   open|filtered ntp
+162/udp   open|filtered snmptrap
+500/udp   open|filtered isakmp
+514/udp   open|filtered syslog
+520/udp   open|filtered route
+996/udp   open|filtered vsinet
+997/udp   open|filtered maitrd
+999/udp   open|filtered applix
+1434/udp  open|filtered ms-sql-m
+1701/udp  open|filtered L2TP
+1900/udp  open|filtered upnp
+5353/udp  open|filtered zeroconf
+49154/udp open|filtered unknown
+MAC Address: AA:C1:AB:2C:70:D7 (Unknown)
+
+Nmap scan report for 198.51.100.53
+Host is up (0.000034s latency).
+Not shown: 13 closed udp ports (port-unreach)
+PORT      STATE         SERVICE      VERSION
+53/udp    open          domain       dnsmasq 2.90
+67/udp    open|filtered dhcps
+68/udp    open|filtered dhcpc
+111/udp   open|filtered rpcbind
+500/udp   open|filtered isakmp
+514/udp   open|filtered syslog
+520/udp   open|filtered route
+997/udp   open|filtered maitrd
+998/udp   open|filtered puparp
+999/udp   open|filtered applix
+1434/udp  open|filtered ms-sql-m
+1701/udp  open|filtered L2TP
+1900/udp  open|filtered upnp
+3283/udp  open|filtered netassistant
+5353/udp  open|filtered zeroconf
+49153/udp open|filtered unknown
+49154/udp open|filtered unknown
+MAC Address: AA:C1:AB:27:EF:36 (Unknown)
+
+Nmap scan report for 10.10.10.2
+Host is up.
+All 30 scanned ports on 10.10.10.2 are in ignored states.
+Not shown: 30 open|filtered udp ports (no-response)
+
+Nmap scan report for 10.10.10.10
+Host is up.
+All 30 scanned ports on 10.10.10.10 are in ignored states.
+Not shown: 30 open|filtered udp ports (no-response)
+
+Nmap scan report for 10.10.10.11
+Host is up.
+All 30 scanned ports on 10.10.10.11 are in ignored states.
+Not shown: 30 open|filtered udp ports (no-response)
+
+Nmap scan report for 10.10.10.12
+Host is up.
+All 30 scanned ports on 10.10.10.12 are in ignored states.
+Not shown: 30 open|filtered udp ports (no-response)
+
+Nmap scan report for 10.10.10.13
+Host is up.
+All 30 scanned ports on 10.10.10.13 are in ignored states.
+Not shown: 30 open|filtered udp ports (no-response)
+
+Nmap scan report for 10.10.10.14
+Host is up.
+All 30 scanned ports on 10.10.10.14 are in ignored states.
+Not shown: 30 open|filtered udp ports (no-response)
+
+Nmap scan report for 10.10.10.15
+Host is up.
+All 30 scanned ports on 10.10.10.15 are in ignored states.
+Not shown: 30 open|filtered udp ports (no-response)
+
+Nmap scan report for 10.10.20.1
+Host is up.
+All 30 scanned ports on 10.10.20.1 are in ignored states.
+Not shown: 30 open|filtered udp ports (no-response)
+
+Nmap scan report for 10.10.20.2
+Host is up.
+All 30 scanned ports on 10.10.20.2 are in ignored states.
+Not shown: 30 open|filtered udp ports (no-response)
+
+Nmap scan report for 10.10.20.10
+Host is up.
+All 30 scanned ports on 10.10.20.10 are in ignored states.
+Not shown: 30 open|filtered udp ports (no-response)
+
+Nmap scan report for 10.10.20.11
+Host is up.
+All 30 scanned ports on 10.10.20.11 are in ignored states.
+Not shown: 30 open|filtered udp ports (no-response)
+
+Nmap scan report for 10.10.20.12
+Host is up.
+All 30 scanned ports on 10.10.20.12 are in ignored states.
+Not shown: 30 open|filtered udp ports (no-response)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Nov 14 11:23:41 2026 -- 17 IP addresses (17 hosts up) scanned in 2179.22 seconds

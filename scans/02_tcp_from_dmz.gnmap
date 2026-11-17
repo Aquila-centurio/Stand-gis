@@ -1,0 +1,12 @@
+# Nmap 7.93 scan initiated Sat Nov 14 10:47:22 2026 as: nmap -Pn -n -sS -sV -p- --min-rate 3000 --open -iL /out/targets_internal.txt -oA /out/02_tcp_from_dmz
+Host: 10.10.10.11 ()	Status: Up
+Host: 10.10.10.11 ()	Ports: 80/open/tcp//http//nginx 1.31.8/	Ignored State: closed (65534)
+Host: 10.10.10.12 ()	Status: Up
+Host: 10.10.10.12 ()	Ports: 21/open/tcp//ftp//vsftpd 3.0.3/	Ignored State: closed (65534)
+Host: 10.10.10.13 ()	Status: Up
+Host: 10.10.10.13 ()	Ports: 25/open/tcp//smtp//Postfix smtpd/, 143/open/tcp//imap//Dovecot imapd/	Ignored State: closed (65533)
+Host: 10.10.10.10 ()	Status: Up
+Host: 10.10.10.10 ()	Ports: 53/open/tcp//domain//Unbound 1.17.1/	Ignored State: closed (65534)
+Host: 10.10.20.10 ()	Status: Up
+Host: 10.10.20.10 ()	Ports: 53/open/tcp//domain//(unknown banner: 9.16.23-RH)/, 389/open/tcp//ldap//(Anonymous bind OK)/, 636/open/tcp//ssl|ldap//(Anonymous bind OK)/	Ignored State: filtered (65532)
+# Nmap done at Sat Nov 14 10:51:03 2026 -- 13 IP addresses (13 hosts up) scanned in 221.33 seconds
