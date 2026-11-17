@@ -25,4 +25,5 @@ IPA ipa user-find testuser
 
 echo "== DNS-записи для АРМ (домен) =="
 IPA ipa dnsrecord-add otlichnik.lab arm --a-rec=10.10.20.12 || true
+IPA ipa dnszone-add 20.10.10.in-addr.arpa --skip-overlap-check || true
 IPA ipa dnsrecord-add 20.10.10.in-addr.arpa 12 --ptr-rec=arm.otlichnik.lab. || true
